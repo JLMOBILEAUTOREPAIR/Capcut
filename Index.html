@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CapCut Pro Free - All Features Unlocked</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+            },
+            dark: {
+              900: '#0f0f11',
+              800: '#18181b',
+              700: '#27272a',
+              600: '#3f3f46',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #18181b; }
+    ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #52525b; }
+    
+    .timeline-grid {
+      background-size: 20px 100%;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-dark-900 text-slate-100 h-screen flex flex-col overflow-hidden font-sans select-none">
+
+  <!-- TOP NAVBAR -->
+  <header class="h-14 bg-dark-800 border-b border-zinc-800 flex items-center justify-between px-4 z-20">
+    <div class="flex items-center space-x-3">
+      <div class="bg-gradient-to-tr from-cyan-500 to-emerald-400 p-2 rounded-lg text-black font-black text-xs tracking-wider">
+        <i class="fa-solid fa-scissors text-sm mr-1"></i> CAPCUT FREE
+      </div>
+      <span class="text-xs bg-emerald-500/20 text-emerald-400 font-bold px-2.5 py-1 rounded-full border border-emerald-500/30 flex items-center gap-1">
+        <i class="fa-solid fa-crown text-amber-400"></i> PRO UNLOCKED
+      </span>
+      <span class="text-xs text-zinc-400 hidden md:inline">| Project_Untitled_01.mp4</span>
+    </div>
+
+    <div class="flex items-center space-x-2">
+      <!-- Resolution Dropdown -->
+      <select id="resSelect" class="bg-dark-700 text-xs border border-zinc-700 rounded-md px-2 py-1.5 focus:outline-none focus:border-emerald-500">
+        <option>1080p • 60 FPS (PRO)</option>
+        <option>2K / 4K • 60 FPS (PRO)</option>
+        <option>720p • 30 FPS</option>
+      </select>
+
+      <button onclick="exportVideo()" class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-bold text-xs px-4 py-2 rounded-md transition flex items-center gap-1.5 shadow-lg shadow-emerald-500/20">
+        <i class="fa-solid fa-file-export"></i> Export (No Watermark)
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE -->
+  <div class="flex-1 flex overflow-hidden">
+
+    <!-- LEFT SIDEBAR: TOOLS & ASSETS -->
+    <aside class="w-16 bg-dark-800 border-r border-zinc-800 flex flex-col items-center py-4 space-y-6 z-10">
+      <button onclick="switchTab('media')" class="nav-tab active text-emerald-400 hover:text-emerald-400 flex flex-col items-center gap-1 text-[10px]" id="tab-media">
+        <i class="fa-solid fa-folder-open text-lg"></i> Media
+      </button>
+      <button onclick="switchTab('audio')" class="nav-tab text-zinc-400 hover:text-emerald-400 flex flex-col items-center gap-1 text-[10px]" id="tab-audio">
+        <i class="fa-solid fa-music text-lg"></i> Audio
+      </button>
+      <button onclick="switchTab('text')" class="nav-tab text-zinc-400 hover:text-emerald-400 flex flex-col items-center gap-1 text-[10px]" id="tab-text">
+        <i class="fa-solid fa-font text-lg"></i> Text
+      </button>
+      <button onclick="switchTab('effects')" class="nav-tab text-zinc-400 hover:text-emerald-400 flex flex-col items-center gap-1 text-[10px]" id="tab-effects">
+        <i class="fa-solid fa-wand-magic-sparkles text-lg"></i> FX Pro
+      </button>
+      <button onclick="switchTab('transitions')" class="nav-tab text-zinc-400 hover:text-emerald-400 flex flex-col items-center gap-1 text-[10px]" id="tab-transitions">
+        <i class="fa-solid fa-arrows-split-up-and-left text-lg"></i> Cuts
+      </button>
+      <button onclick="switchTab('ai')" class="nav-tab text-zinc-400 hover:text-emerald-400 flex flex-col items-center gap-1 text-[10px]" id="tab-ai">
+        <i class="fa-solid fa-brain text-lg"></i> AI Tools
+      </button>
+    </aside>
+
+    <!-- ASSET PANEL DETAILS -->
+    <section class="w-72 bg-dark-800 border-r border-zinc-800 flex flex-col p-3 overflow-y-auto">
+      
+      <!-- Media Tab Content -->
+      <div id="content-media" class="space-y-4">
+        <h3 class="text-xs font-bold text-zinc-400 uppercase tracking-wider">Project Assets</h3>
+        <label class="border-2 border-dashed border-zinc-700 hover:border-emerald-500 rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer transition bg-dark-900/50">
+          <i class="fa-solid fa-cloud-arrow-up text-2xl text-emerald-400 mb-2"></i>
+          <span class="text-xs font-semibold text-zinc-300">Import Media</span>
+          <span class="text-[10px] text-zinc-500 mt-1">Video, Audio, Images</span>
+          <input type="file" class="hidden" accept="video/*,image/*,audio/*" onchange="handleFileUpload(event)">
+        </label>
+
+        <div class="text-xs font-bold text-zinc-400 uppercase tracking-wider pt-2">Sample Stock Footage</div>
+        <div class="grid grid-cols-2 gap-2" id="stockMediaList">
+          <div onclick="addSampleToTimeline('cyberpunk')" class="group relative rounded-md overflow-hidden border border-zinc-700 cursor-pointer hover:border-emerald-500">
+            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300" class="w-full h-16 object-cover group-hover:scale-105 transition">
+            <span class="absolute bottom-1 right-1 text-[9px] bg-black/70 px-1 rounded text-emerald-400">00:10</span>
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+              <i class="fa-solid fa-plus text-white text-xs"></i>
+            </div>
+          </div>
+          <div onclick="addSampleToTimeline('nature')" class="group relative rounded-md overflow-hidden border border-zinc-700 cursor-pointer hover:border-emerald-500">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300" class="w-full h-16 object-cover group-hover:scale-105 transition">
+            <span class="absolute bottom-1 right-1 text-[9px] bg-black/70 px-1 rounded text-emerald-400">00:08</span>
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+              <i class="fa-solid fa-plus text-white text-xs"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Effects Tab Content -->
+      <div id="content-effects" class="hidden space-y-3">
+        <h3 class="text-xs font-bold text-zinc-400 uppercase tracking-wider">Pro FX Studio</h3>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="applyEffect('glitch')" class="p-2 border border-zinc-700 hover:border-emerald-500 rounded bg-dark-900 text-left text-xs font-medium flex items-center gap-2">
+            <i class="fa-solid fa-bolt text-amber-400"></i> Cyber Glitch
+          </button>
+          <button onclick="applyEffect('vhs')" class="p-2 border border-zinc-700 hover:border-emerald-500 rounded bg-dark-900 text-left text-xs font-medium flex items-center gap-2">
+            <i class="fa-solid fa-tv text-purple-400"></i> Retro 80s VHS
+          </button>
+          <button onclick="applyEffect('cinematic')" class="p-2 border border-zinc-700 hover:border-emerald-500 rounded bg-dark-900 text-left text-xs font-medium flex items-center gap-2">
+            <i class="fa-solid fa-film text-cyan-400"></i> Teal & Orange
+          </button>
+          <button onclick="applyEffect('blur')" class="p-2 border border-zinc-700 hover:border-emerald-500 rounded bg-dark-900 text-left text-xs font-medium flex items-center gap-2">
+            <i class="fa-solid fa-eye-slash text-rose-400"></i> Gaussian Blur
+          </button>
+        </div>
+      </div>
+
+      <!-- Text Tab Content -->
+      <div id="content-text" class="hidden space-y-3">
+        <h3 class="text-xs font-bold text-zinc-400 uppercase tracking-wider">Text & Titles</h3>
+        <button onclick="addTextTrack()" class="w-full bg-emerald-500/10 border border-emerald-500 text-emerald-400 py-2 rounded text-xs font-bold flex items-center justify-center gap-1 hover:bg-emerald-500/20">
+          <i class="fa-solid fa-plus"></i> Add Subtitle / Text Track
+        </button>
+      </div>
+
+      <!-- AI Tools Tab -->
+      <div id="content-ai" class="hidden space-y-3">
+        <h3 class="text-xs font-bold text-zinc-400 uppercase tracking-wider">Pro AI Tools (Unlocked)</h3>
+        <div class="space-y-2">
+          <button onclick="alert('AI Auto-Captions generated successfully!')" class="w-full p-2 border border-zinc-700 hover:border-emerald-500 rounded bg-dark-900 text-left text-xs flex items-center justify-between">
+            <span><i class="fa-solid fa-closed-captioning text-emerald-400 mr-2"></i> Auto Captions</span>
+            <span class="text-[9px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded">FREE</span>
+          </button>
+          <button onclick="alert('Background removed!')" class="w-full p-2 border border-zinc-700 hover:border-emerald-500 rounded bg-dark-900 text-left text-xs flex items-center justify-between">
+            <span><i class="fa-solid fa-user-slash text-cyan-400 mr-2"></i> Smart Cutout</span>
+            <span class="text-[9px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded">FREE</span>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CENTER PLAYBACK CANVAS -->
+    <main class="flex-1 bg-black flex flex-col items-center justify-center relative p-4">
+      <!-- Player Display -->
+      <div class="relative max-w-full max-h-full aspect-video bg-zinc-950 rounded-lg overflow-hidden border border-zinc-800 shadow-2xl flex items-center justify-center group" id="playerContainer">
+        
+        <canvas id="videoCanvas" width="1280" height="720" class="w-full h-full object-contain"></canvas>
+
+        <!-- Dynamic Overlay Text -->
+        <div id="canvasOverlayText" class="absolute inset-0 flex items-center justify-center pointer-events-none text-2xl md:text-4xl font-extrabold text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)] hidden">
+          SAMPLE TEXT
+        </div>
+
+        <!-- Watermark Badge (Disabled for Pro Free) -->
+        <div class="absolute top-3 right-3 text-[10px] text-zinc-500 bg-black/50 px-2 py-1 rounded backdrop-blur">
+          CapCut Free • No Watermark
+        </div>
+      </div>
+
+      <!-- Player Controls -->
+      <div class="w-full max-w-2xl mt-4 flex items-center justify-between bg-dark-800 border border-zinc-800 px-4 py-2 rounded-xl">
+        <div class="flex items-center space-x-3">
+          <button onclick="togglePlay()" id="playBtn" class="text-emerald-400 hover:text-emerald-300 text-xl">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <span id="timeDisplay" class="text-xs font-mono text-zinc-400">00:00 / 00:10</span>
+        </div>
+
+        <div class="flex items-center space-x-4 text-xs text-zinc-400">
+          <button onclick="splitSelectedTrack()" class="hover:text-emerald-400 flex items-center gap-1">
+            <i class="fa-solid fa-scissors"></i> Split
+          </button>
+          <button onclick="deleteSelectedTrack()" class="hover:text-rose-400 flex items-center gap-1">
+            <i class="fa-solid fa-trash"></i> Delete
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT PROPERTIES PANEL -->
+    <aside class="w-64 bg-dark-800 border-l border-zinc-800 p-3 space-y-4">
+      <h3 class="text-xs font-bold text-zinc-400 uppercase tracking-wider">Clip Inspector</h3>
+      
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="text-zinc-400 block mb-1">Opacity</label>
+          <input type="range" id="opacitySlider" min="0" max="100" value="100" oninput="updateClipProperty()" class="w-full accent-emerald-500">
+        </div>
+
+        <div>
+          <label class="text-zinc-400 block mb-1">Speed Ramping</label>
+          <select id="speedSelect" onchange="updateClipProperty()" class="w-full bg-dark-900 border border-zinc-700 rounded p-1.5 focus:outline-none focus:border-emerald-500">
+            <option value="0.5">0.5x (Slow Mo)</option>
+            <option value="1" selected>1.0x (Normal)</option>
+            <option value="1.5">1.5x (Fast)</option>
+            <option value="2.0">2.0x (Speed Up)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="text-zinc-400 block mb-1">Filters Applied</label>
+          <div id="appliedFilterTag" class="text-[11px] bg-dark-900 border border-zinc-700 p-2 rounded text-emerald-400">
+            None
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- BOTTOM TIMELINE -->
+  <footer class="h-48 bg-dark-800 border-t border-zinc-800 flex flex-col">
+    <!-- Timeline Tools Bar -->
+    <div class="h-8 border-b border-zinc-800 flex items-center justify-between px-4 text-xs text-zinc-400">
+      <div class="flex items-center space-x-3">
+        <button onclick="splitSelectedTrack()" class="hover:text-emerald-400" title="Split Clip (S)">
+          <i class="fa-solid fa-scissors"></i>
+        </button>
+        <button onclick="deleteSelectedTrack()" class="hover:text-rose-400" title="Delete Clip">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+      <div class="text-[10px] text-zinc-500">Drag clips to rearrange tracks</div>
+    </div>
+
+    <!-- Timeline Tracks View -->
+    <div class="flex-1 relative overflow-x-auto overflow-y-auto p-2 timeline-grid relative" id="timelineContainer">
+      <!-- Playhead Red Line -->
+      <div id="playhead" class="absolute top-0 bottom-0 w-0.5 bg-rose-500 z-30 pointer-events-none" style="left: 20px;">
+        <div class="w-2.5 h-2.5 bg-rose-500 -ml-1 rotate-45 rounded-sm"></div>
+      </div>
+
+      <!-- Track 1: Video -->
+      <div class="space-y-2 pt-2">
+        <div class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-1">Video Track 1</div>
+        <div class="h-12 bg-dark-900/80 rounded border border-zinc-700 flex items-center px-2 relative" id="videoTrack">
+          <div id="clip-1" onclick="selectClip('clip-1')" class="absolute h-10 bg-emerald-600/30 border border-emerald-500 rounded p-1 text-xs text-emerald-300 font-semibold flex items-center space-x-2 cursor-pointer hover:brightness-110" style="left: 20px; width: 200px;">
+            <i class="fa-solid fa-video text-xs"></i>
+            <span class="truncate">Cyberpunk_Sample.mp4</span>
+          </div>
+        </div>
+
+        <!-- Track 2: Text / Overlays -->
+        <div class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-1">Text & Overlays</div>
+        <div class="h-10 bg-dark-900/80 rounded border border-zinc-700 flex items-center px-2 relative" id="textTrack">
+          <div id="clip-text" onclick="selectClip('clip-text')" class="absolute h-8 bg-purple-600/30 border border-purple-500 rounded p-1 text-xs text-purple-300 font-semibold flex items-center space-x-2 cursor-pointer hover:brightness-110 hidden" style="left: 20px; width: 140px;">
+            <i class="fa-solid fa-font text-xs"></i>
+            <span class="truncate">Subtitle Track</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT CONTROLLER -->
+  <script>
+    let isPlaying = false;
+    let playheadPos = 20;
+    let animationFrame;
+    let selectedClipId = 'clip-1';
+    let currentEffect = 'none';
+
+    const canvas = document.getElementById('videoCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Draw initial Canvas Mock Screen
+    function renderCanvas() {
+      ctx.fillStyle = '#09090b';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Render demo graphics
+      ctx.fillStyle = currentEffect === 'glitch' ? '#00ffff' : '#10b981';
+      ctx.font = 'bold 36px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('CAPCUT PRO FREE', canvas.width / 2, canvas.height / 2 - 20);
+
+      ctx.fillStyle = '#a1a1aa';
+      ctx.font = '18px sans-serif';
+      ctx.fillText('Full HD Video Render Engine Unlocked', canvas.width / 2, canvas.height / 2 + 30);
+    }
+
+    renderCanvas();
+
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      const btn = document.getElementById('playBtn');
+      if (isPlaying) {
+        btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        animatePlayhead();
+      } else {
+        btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        cancelAnimationFrame(animationFrame);
+      }
+    }
+
+    function animatePlayhead() {
+      if (!isPlaying) return;
+      playheadPos += 1.5;
+      if (playheadPos > 600) playheadPos = 20;
+
+      document.getElementById('playhead').style.left = playheadPos + 'px';
+      
+      // Time format calculation
+      const seconds = Math.floor((playheadPos - 20) / 20);
+      document.getElementById('timeDisplay').innerText = `00:${seconds < 10 ? '0' + seconds : seconds} / 00:30`;
+
+      animationFrame = requestAnimationFrame(animatePlayhead);
+    }
+
+    function switchTab(tab) {
+      document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('text-emerald-400'));
+      document.getElementById(`tab-${tab}`).classList.add('text-emerald-400');
+
+      document.getElementById('content-media').classList.add('hidden');
+      document.getElementById('content-effects').classList.add('hidden');
+      document.getElementById('content-text').classList.add('hidden');
+      document.getElementById('content-ai').classList.add('hidden');
+
+      const activeContent = document.getElementById(`content-${tab}`);
+      if (activeContent) activeContent.classList.remove('hidden');
+    }
+
+    function selectClip(clipId) {
+      selectedClipId = clipId;
+      document.querySelectorAll('[id^="clip-"]').forEach(el => el.classList.remove('ring-2', 'ring-emerald-400'));
+      document.getElementById(clipId).classList.add('ring-2', 'ring-emerald-400');
+    }
+
+    function applyEffect(effectName) {
+      currentEffect = effectName;
+      document.getElementById('appliedFilterTag').innerText = effectName.toUpperCase();
+      renderCanvas();
+    }
+
+    function addTextTrack() {
+      const textClip = document.getElementById('clip-text');
+      textClip.classList.remove('hidden');
+      document.getElementById('canvasOverlayText').classList.remove('hidden');
+    }
+
+    function splitSelectedTrack() {
+      alert('Selected clip split at playhead position!');
+    }
+
+    function deleteSelectedTrack() {
+      if (selectedClipId && selectedClipId !== 'clip-1') {
+        document.getElementById(selectedClipId).classList.add('hidden');
+      } else {
+        alert('Primary video clip cannot be deleted!');
+      }
+    }
+
+    function handleFileUpload(e) {
+      const file = e.target.files[0];
+      if (file) {
+        alert(`Loaded media: ${file.name}`);
+      }
+    }
+
+    function exportVideo() {
+      const res = document.getElementById('resSelect').value;
+      alert(`Exporting high quality video (${res}) without watermarks... Export complete!`);
+    }
+  </script>
+</body>
+</html>
